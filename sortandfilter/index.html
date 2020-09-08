@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="shortcut icon" href="">
+    <title>アニメーションを用いたソーティング</title>
+    <meta name="Description" content="">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>商品一覧</h1>
+    <div id="app">
+        <section class="sidemenu">
+            <input type="text" v-model="filter.name" placeholder="商品名を入力してください">
+            <br>
+            <label for="">価格</label>
+            <div class="search-price">
+                <input type="checkbox" id="under" value="under" v-model="filter.price">
+                <label for="under">200円未満</label>
+                <input type="checkbox" id="over" value="over" v-model="filter.price">
+                <label for="over">200円以上</label>
+                <br>
+            </div>
+            <label for="">並び順</label>
+            <div class="sort-items">
+                <select v-model="sort.key">
+                    <option value="id">No</option>
+                    <option value="name">商品名</option>
+                    <option value="price">価格</option>
+                    <option value="colorCode">色</option>
+                </select>
+                <button @click="sortBy(sort.key)" :class="sortClass(sort.key)"></button>
+            </div>
+        </section>
+        <section class="content">
+            <transition-group name="list" tag="ul">
+                <li v-for="(item, index) in result" :key="item.id" class="item">
+                    <span>{{item.id}}</span>
+                    <span>{{item.name}}</span>
+                    <span>{{item.price|formatCurrency}}</span>
+                    <span>
+                        <div class="color" :style="'background-color:' + item.colorCode"></div>
+                    </span>
+                </li>
+            </transition-group>
+        </section>
+    </div>
+    <script src="../vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

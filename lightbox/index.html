@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="shortcut icon" href="">
+    <title>ギャラリー</title>
+    <meta name="Description" content="">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/48a9b3acb9.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul class="gallery">
+            <li class="gallery-item">
+                <a href="./pic/furen1.png" @click.prevent="zoom">
+                    <img src="./pic/furen1.png" alt="">
+                    <span class="gallery-item-hover">
+                        <i class="fas fa-search-plus"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="gallery-item">
+                <a href="./pic/furen2.png" @click.prevent="zoom">
+                    <img src="./pic/furen2.png" alt="">
+                    <span class="gallery-item-hover">
+                        <i class="fas fa-search-plus"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="gallery-item">
+                <a href="./pic/furen_ssr.png" @click.prevent="zoom">
+                    <img src="./pic/furen_ssr.png" alt="">
+                    <span class="gallery-item-hover">
+                        <i class="fas fa-search-plus"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="gallery-item">
+                <a href="./pic/hayasaka.png" @click.prevent="zoom">
+                    <img src="./pic/hayasaka.png" alt="">
+                    <span class="gallery-item-hover">
+                        <i class="fas fa-search-plus"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="gallery-item">
+                <a href="./pic/i's.png" @click.prevent="zoom">
+                    <img src="./pic/i's.png" alt="">
+                    <span class="gallery-item-hover">
+                        <i class="fas fa-search-plus"></i>
+                    </span>
+                </a>
+            </li>
+            <li class="gallery-item">
+                <a href="./pic/sora.jpg" @click.prevent="zoom">
+                    <img src="./pic/sora.jpg" alt="">
+                    <span class="gallery-item-hover">
+                        <i class="fas fa-search-plus"></i>
+                    </span>
+                </a>
+            </li>
+        </ul>
+
+        <transition name="fade">
+            <div class="bg" @click.self="close" v-show="isShow">
+                <transition name="slide" @after-leave="afterLeave">
+                    <div class="modal" v-show="isShow">
+                        <img :src="src">
+                    </div>
+                </transition>
+            </div>
+        </transition>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

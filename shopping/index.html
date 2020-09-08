@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="shortcut icon" href="">
+    <title>ネットショップ</title>
+    <meta name="Description" content="">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/48a9b3acb9.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <h1>オンラインショップ</h1>
+        <div class="flex-container">
+            <div class="flex-item">
+                <div class="row" v-for="item in items">
+                    <div class="contents">
+                        <div>
+                            <img :src="item.image">
+                        </div>
+                        <div>{{item.title}}</div>
+                        <div>{{item.price|formatCurrency}}</div>
+                        <input v-model="item.qty" type="number" min="1">
+                        <button @click="addToCart(item)" class="button button-outline">カートに入れる</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cart">
+                <div class="summary">
+                    <shopping-cart :items="cartItems"></shopping-cart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

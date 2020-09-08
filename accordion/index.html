@@ -1,0 +1,51 @@
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="shortcut icon" href="">
+    <title>アコーディオンパネル</title>
+    <meta name="Description" content="">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/48a9b3acb9.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="app">
+        <accordion>
+            <div slot="title">Chapter1-1</div>
+            <div class="details" slot="detail">
+                <h3>UI / UX</h3>
+                <p>ページ遷移が必要ない。リアルタイムでのフィードバックが必要なサイトが増えてきた</p>
+            </div>
+        </accordion>
+        <accordion>
+            <div slot="title">Chapter1-2</div>
+            <div class="details" slot="detail">
+                <h3>jQueryとの違い</h3>
+                <p>jQueryはDOMを外部から触るライブラリ</p>
+                <p>Vue.jsはデータ（ViewModel）を管理することで仮想DOMを描画するライブラリ</p>
+            </div>
+        </accordion>
+        <accordion>
+            <div slot="title">Chapter1-3</div>
+            <div class="details" slot="detail">
+                <h3>React.jsとの違い</h3>
+                <p>データによって仮想DOMを描画する点は一緒</p>
+                <p>HTMLをそのままテンプレートとして利用できる</p>
+                <p>つまりコンパイルも不要</p>
+                <button>もっと読む</button>
+            </div>
+        </accordion>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

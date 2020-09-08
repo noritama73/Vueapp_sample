@@ -1,0 +1,93 @@
+body {
+    background-color: rgba(128, 128, 128, 0.1);
+}
+#app {
+    display: flex;
+}
+.item{
+    display: inline-flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+    width: 98%;
+    height: 4em;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    border: solid 1px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255);
+}
+.item > span {
+    width: 25%;
+    padding: 1.2rem 1.5rem;
+}
+.color {
+    display: inline-block;
+    height: 1.3em;
+    width: 1.3em;
+    margin-right: 2px;
+    border-radius: 3px;
+    border: solid 1px #ccc;
+    cursor: pointer;
+}
+.sidemenu {
+    width: 250px;
+    height: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: rgba(204, 204, 204, 0.2);
+    border: 1px solid #ccc;
+}
+.sidemenu select {
+    width: 60%;
+    position: relative;
+    font-family: inherit;
+    background-color: transparent;
+    padding: 10px 10px 10px 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+.content {
+    height: 100%;
+    width: calc(100% - 250px);
+    position: relative;
+    padding: 0 20px;
+}
+.search-price {
+    display: flex;
+    justify-content: space-around;
+}
+button .sorted {
+    background: #fff;
+    color: #9b4dca;
+    border: 1px solid #9b4dca;
+    border-radius: 19px;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 0 10px;
+    min-width: 6em;
+    cursor: pointer;
+    outline: none;
+    transition: .2s;
+}
+.sort.desc::after {
+    display: inline-block;
+    content: '▼降順';
+}
+.sort.asc::after {
+    display: inline-block;
+    content: '▲昇順';
+}
+.list-enter-active, .list-leave-active, .list-move {
+    transition: opacity 1s, transform 1s;
+}
+.list-leave-active {
+    position: absolute;
+}
+.list-enter {
+    opacity: 0;
+    transform: rotateX(-50px);
+}
+.list-leave-to {
+    opacity: 0;
+    transform: translateX(100px);
+}
