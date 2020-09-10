@@ -52,23 +52,21 @@ new Vue({
             this.chats.splice(index, 1)
         },
         addMessage(showChats) {
-            var errors = {
-                from: [],
-                to: [],
-                text: [],
-            };
+            this.errors.from = [];
+            this.errors.to = [];
+            this.errors.text = [];
             var isAdd = true;
 
             if (!this.chats.from) {
-                errors.from.push('送り名が入力されていません');
+                this.errors.from.push('送り名が入力されていません');
                 isAdd = false;
             }
             if (!this.chats.to) {
-                errors.to.push('宛名が入力されていません');
+                this.errors.to.push('宛名が入力されていません');
                 isAdd = false;
             }
             if (!this.chats.text) {
-                errors.from.push('本文が入力されていません');
+                this.errors.text.push('本文が入力されていません');
                 isAdd = false;
             }
 

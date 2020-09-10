@@ -28,7 +28,7 @@
                 <textarea name="chats.text" id="chats.text" v-model="chats.text"
                 　rows="8" cols="100" placeholder="本文を入力してください"></textarea>
             </div>
-            <input type="submit" class="button"  value="送信" @click="addMessage(chats)">
+            <input type="submit" class="button"  value="送信" @click.prevent="addMessage(chats)">
             <errors :errors="errors.from"></errors>
             <errors :errors="errors.to"></errors>
             <errors :errors="errors.text"></errors>
