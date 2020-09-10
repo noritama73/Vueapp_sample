@@ -27,9 +27,9 @@ Vue.component('shopping-cart', {
         </tr>
     <tr class="cartinfo">
         <td colspan="2">合計</td>
-        <td colspan="2">{{ total| formatCurrency}}</td>
+        <td colspan="2">{{ total | formatCurrency}}</td>
     </tr>
-    </table >
+    </table>
     `,
     props: ['items'],
     computed: {

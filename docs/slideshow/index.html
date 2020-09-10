@@ -7,13 +7,22 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <link rel="shortcut icon" href="">
-    <title>ギャラリー</title>
+    <title>スライドショー</title>
     <meta name="Description" content="">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/48a9b3acb9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="app">
+        <main class="main">
+            <section class="block">
+                <h1 class="block-title">カルーセル</h1>
+                <carousel :img-list="images"></carousel>
+            </section>
+        </main>
     </div>
 
     <script src="../vue.js"></script>

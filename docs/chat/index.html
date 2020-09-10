@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html lang="jp">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <link rel="shortcut icon" href="">
+    <title>フリーチャット</title>
+    <meta name="Description" content="">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div id="app">
+        <h1>フリーチャット</h1>
+        <div class="message-form">
+            <div class="address">
+                <label for="from">From:</label>
+                <input type="text" name="chats.from" id="chats.from" v-model="chats.from">
+                <label for="from">To:</label>
+                <input type="text" name="chats.to" id="chats.to" v-model="chats.to">
+            </div>
+            <div class="text-body">
+                <label for="from">Message:</label>
+                <textarea name="chats.text" id="chats.text" v-model="chats.text"
+                　rows="8" cols="100" placeholder="本文を入力してください"></textarea>
+            </div>
+            <input type="submit" class="button"  value="送信" @click="addMessage(chats)">
+            <errors :errors="errors.from"></errors>
+            <errors :errors="errors.to"></errors>
+            <errors :errors="errors.text"></errors>
+        </div>
+        <div class="container">
+            <message :chats="showChats"></message>
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

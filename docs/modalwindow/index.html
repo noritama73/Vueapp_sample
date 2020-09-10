@@ -7,13 +7,60 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <link rel="shortcut icon" href="">
-    <title>ギャラリー</title>
+    <title>モーダルウィンドウ</title>
     <meta name="Description" content="">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+        integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/48a9b3acb9.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="app">
+        <h1>Modal</h1>
+        <ul>
+            <li><a href="#" @click.prevent="open('login')">ログイン</a></li>
+            <li><a href="#" @click.prevent="open('terms')">利用規約</a></li>
+        </ul>
+
+        <modal v-show="modal.login.isShow" @close="close('login')">
+            <template slot="header">ログイン</template>
+            <div slot="body" class="form">
+                <label for="username">ユーザーネーム</label>
+                <input type="text" name="username" id="username"><br>
+                <label for="password">パスワード</label>
+                <input type="text" name="password" id="password">
+            </div>
+            <div slot="footer">
+                <button class="button-outline" @click.prevent="close('login')">キャンセル</button>
+                <button>ログイン</button>
+            </div>
+        </modal>
+        <modal v-show="modal.terms.isShow" @close="close('terms')">
+            <template slot="header">利用規約</template>
+            <div slot="body" class="form">
+                <h1>利用規約</h1>
+                <p>この利用規約（以下、「本規約」といいます）は、</p>
+                <p>...</p>
+                <h2>第１条（適用）</h2>
+                <ol>
+                    <li><p>...</p></li>
+                    <li><p>...</p></li>
+                    <li><p>（以下略）</p></li>
+                </ol>   
+                <h2>第２条</h2>
+                <ol>
+                    <li><p>...</p></li>
+                    <li><p>...</p></li>
+                    <li><p>（以下略）</p></li>
+                </ol>                
+                <p>以上</p>
+            </div>
+            <div slot="footer">
+                <button class="button-outline" @click.prevent="close('terms')">閉じる</button>
+                <button>利用規約に同意する</button>
+            </div>
+        </modal>
     </div>
 
     <script src="../vue.js"></script>

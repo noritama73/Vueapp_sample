@@ -1,0 +1,28 @@
+    .tab {
+      list-style: none;
+      border-bottom: 1px solid #ccc;
+    }
+    .tab-item {
+      border: 1px solid transparent;
+      border-bottom: none;
+      display: inline-block;
+      margin: 0 0 -1px;
+      border-radius: 4px 4px 0 0;
+    }
+    .tab-item:hover {
+      border-color: #ccc;
+    }
+    .tab-item a {
+      display: block;
+      padding: 10px 15px;
+    }
+    .tab-item.active {
+      border-color: #ccc;
+      background-color: #fff;
+    }
+    .tab-item.active a {
+      color: #606c76;
+    }
+    #app {
+        margin: 10px 10% ;
+    }

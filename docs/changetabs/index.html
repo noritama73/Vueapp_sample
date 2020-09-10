@@ -7,13 +7,22 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <link rel="shortcut icon" href="">
-    <title>ギャラリー</title>
+    <title>タブ切替</title>
     <meta name="Description" content="">
     <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
     <div id="app">
+        <h1>タブ</h1>
+        <ul class="tab">
+            <li class="tab-item" v-for="(item, key) in items" :key="key" :class="{active: active===key}">
+                <a href="#" @click.prevent="activate(key)">{{item}}</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <component class="tab-pane" :is="activeTabComponent"></component>
+        </div>
     </div>
 
     <script src="../vue.js"></script>
