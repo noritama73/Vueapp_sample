@@ -13,19 +13,17 @@ Vue.component('message', {
         <div class="message" v-for="(chat, index) in chats">
             <div class="propaty">
                 <div>ID:{{chat.id}}</div>
-                <div>From:{{chat.from}}</div>
-                <div>To:{{chat.to}}</div>
+                <div v-show="chat.from">From:{{chat.from}}</div>
+                <div v-show="chat.to">To:{{chat.to}}</div>
             </div>
             <div class="body">
                 <div>{{chat.text}}</div>
                 <button class="button-outline" @click.stop.prevent="remove(index)">削除</button>
-                <button class="button-outline" @click.stop.prevent="reply">返信</button>
-                <div v-show="chat.replyText">>>{{chat.id}}</div>
-                <div class="accordion" v-show="chat.isReply">
-                    <input type="text" name="chat.replyFrom" id="chat.replyFrom" v-model="chat.replyFrom">
-                    <textarea name="chat.replyText" id="chat.replyText" v-model="chat.replyText"
-                　   rows="8" cols="80" placeholder="本文を入力してください"></textarea>
-                    <button class="button-outline" @click="addReply">送信</button>
+                <button class="button-outline" @click.stop.prevent="openReply">返信</button>
+                <div class="replyBody">
+                    <div> >>{{chat.id}} </div>
+                    <div>{{replyText}}</div>
+                    <replyMessage :value="replyText" @input="replyText = $event" :is-reply="isReply"></replyMessage>
                 </div>
             </div>
         </div>
@@ -34,21 +32,50 @@ Vue.component('message', {
     props: {
         chats: Array,
     },
+    data: function () {
+        return {
+            replyText: '',
+            isReply: false,
+        }
+    },
     methods: {
         remove(index) {
             this.chats.splice(index, 1);
         },
-        reply() {
-            this.chats.isReply = true;
-            this.showChats.push(Vue.util.extend({}, showChats));
-        },
-        addReply() {
-            this.chats.isReply = false;
-            this.showChats.push(Vue.util.extend({}, showChats));
+        openReply() {
+            this.isReply = true;
         }
     }
 })
 
+Vue.component('replyMessage', {
+    template: `
+    <div>
+        <div class="accordion" v-show="isReply">
+            <textarea v-model="replyText" rows="5" cols="60" placeholder="返信を入力してください"></textarea>
+            <button class="button-outline" @click="childAddReply">送信</button>
+        </div>
+    </div>
+    `,
+    props: {
+        value: String,
+        isReply: Boolean,
+    },
+    data: () => ({
+        replyText: '',
+    }),
+    methods: {
+        childAddReply() {
+            this.$emit("input", this.replyText);
+            this.isReply = false;
+        },
+    },
+    watch: {
+        value: function (newValue) {
+            this.replyText = newValue;
+        }
+    }
+})
 
 new Vue({
     el: '#app',
@@ -58,9 +85,6 @@ new Vue({
             from: '',
             to: '',
             text: '',
-            replyText: '',
-            replyFrom: '',
-            isReply: false,
         },
         errors: {
             from: [],
@@ -81,14 +105,14 @@ new Vue({
             this.errors.text = [];
             var isAdd = true;
 
-            if (!this.chats.from) {
+            /*if (!this.chats.from) {
                 this.errors.from.push('送り名が入力されていません');
                 isAdd = false;
             }
             if (!this.chats.to) {
                 this.errors.to.push('宛名が入力されていません');
                 isAdd = false;
-            }
+            }*/
             if (!this.chats.text) {
                 this.errors.text.push('本文が入力されていません');
                 isAdd = false;
@@ -98,9 +122,6 @@ new Vue({
                 this.chats.id = this.currentId;
                 this.currentId++;
                 this.showChats.push(Vue.util.extend({}, showChats));
-                if (this.isReply) {
-                    this.isReply = false;
-                }
             }
         },
     }
