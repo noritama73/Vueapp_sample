@@ -27,7 +27,7 @@ Vue.component('message', {
             </div>
         </div>
         <transition name="fade">
-            <div class="bg" @click.self="close" v-show="isDelete">
+            <div class="bg" v-show="isDelete">
                 <transition name="slide" @after-leave="afterLeave">
                     <div class="modal" v-show="isDelete">
                         <p>{{deleteId}}番のレスを削除しますか？</p>
@@ -48,6 +48,7 @@ Vue.component('message', {
             isReply: false,
             isDelete: false,
             deleteId: '',
+            index: '',
         }
     },
     methods: {
@@ -114,9 +115,9 @@ new Vue({
             text: '',
         },
         errors: {
-            from: [],
-            to: [],
-            text: [],
+            from: '',
+            to: '',
+            text: '',
         },
         showChats: [],
         currentId: 1,
@@ -124,21 +125,21 @@ new Vue({
     },
     methods: {
         addMessage(showChats) {
-            this.errors.from = [];
-            this.errors.to = [];
-            this.errors.text = [];
+            this.errors.from = '';
+            this.errors.to = '';
+            this.errors.text = '';
             var isAdd = true;
 
             if (!this.chats.from) {
-                this.errors.from.push('送り名が入力されていません');
+                this.errors.from = '送り名が入力されていません';
                 isAdd = false;
             }
             if (!this.chats.to) {
-                this.errors.to.push('宛名が入力されていません');
+                this.errors.to = '宛名が入力されていません';
                 isAdd = false;
             }
             if (!this.chats.text) {
-                this.errors.text.push('本文が入力されていません');
+                this.errors.text = '本文が入力されていません';
                 isAdd = false;
             }
 
