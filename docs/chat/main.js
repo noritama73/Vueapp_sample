@@ -85,10 +85,10 @@ Vue.component('replyMessage', {
         value: String,
         isReply: Boolean,
         replyId: Number,
-        can: Boolean,
     },
     data: () => ({
         replyText: '',
+        can: false,
     }),
     methods: {
         childAddReply() {
