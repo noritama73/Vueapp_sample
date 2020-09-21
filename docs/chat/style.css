@@ -11,6 +11,9 @@
 .replyBody {
     margin: 5px 15px;
 }
+.delete {
+    color: white;
+}
 .button {
   background: #83fad2;
   color: #fff;

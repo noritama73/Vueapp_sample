@@ -13,7 +13,7 @@ export default {
     },
     methods: {
         openChild(){
-            isShow = !isShow
+            this.isShow = !this.isShow
         }
     }
 };

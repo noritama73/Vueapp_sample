@@ -19,10 +19,9 @@ Vue.component('message', {
             <div class="body">
                 <div>{{chat.text}}</div>
                 <button class="button-outline" @click.stop.prevent="remove(chat.id)">削除</button>
-                <button class="button-outline" @click.stop.prevent="openReply">返信</button>
+                <button class="button-outline" @click="openReply">返信</button>
                 <div class="replyBody">
-                    <replyMessage :value="replyText" @input="replyText = $event" :reply-id="chat.id" ref="child"></replyMessage>
-                    <div>{{replyText}}</div>
+                    <reply-message :reply-id="chat.id" ref="child"></reply-message>
                 </div>
             </div>
         </div>
@@ -30,7 +29,7 @@ Vue.component('message', {
             <div class="bg" v-show="isDelete">
                 <transition name="slide" @after-leave="afterLeave">
                     <div class="modal" v-show="isDelete">
-                        <p>{{deleteId}}番のレスを削除しますか？</p>
+                        <p class="delete">{{deleteId}}番のレスを削除しますか？</p>
                         <button class="button-outline no" @click.self="close">いいえ</button>
                         <button class="button-outline yes" @click.self="doRemove(index)">はい</button>
                     </div>
@@ -44,7 +43,6 @@ Vue.component('message', {
     },
     data: function () {
         return {
-            replyText: '',
             isDelete: false,
             deleteId: '',
             index: '',
@@ -60,7 +58,8 @@ Vue.component('message', {
             this.isDelete = false;
         },
         openReply() {
-            this.$refs.child.$emit('openReplyChild');
+            console.log(this.$refs.child)
+            this.$refs.child.openReplyChild()
         },
         close: function () {
             this.isDelete = false;
@@ -75,6 +74,7 @@ Vue.component('replyMessage', {
     template: `
     <div>
         <div v-show="can"> >>{{replyId}} </div>
+        <div>{{replyText}}</div>
         <div class="accordion" v-show="isReply">
             <textarea v-model="replyText" rows="5" cols="60" placeholder="返信を入力してください"></textarea>
             <button class="button-outline" @click="childAddReply">送信</button>
@@ -99,11 +99,6 @@ Vue.component('replyMessage', {
             this.can = true;
             this.isReply = false;
         },
-    },
-    watch: {
-        value: function (newValue) {
-            this.replyText = newValue;
-        }
     }
 })
 
