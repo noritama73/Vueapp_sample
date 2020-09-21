@@ -21,7 +21,7 @@ Vue.component('message', {
                 <button class="button-outline" @click.stop.prevent="remove(chat.id)">削除</button>
                 <button class="button-outline" @click.stop.prevent="openReply">返信</button>
                 <div class="replyBody">
-                    <replyMessage :value="replyText" @input="replyText = $event" :is-reply="isReply" :reply-id="chat.id"></replyMessage>
+                    <replyMessage :value="replyText" @input="replyText = $event" :reply-id="chat.id" ref="child"></replyMessage>
                     <div>{{replyText}}</div>
                 </div>
             </div>
@@ -45,7 +45,6 @@ Vue.component('message', {
     data: function () {
         return {
             replyText: '',
-            isReply: false,
             isDelete: false,
             deleteId: '',
             index: '',
@@ -61,7 +60,7 @@ Vue.component('message', {
             this.isDelete = false;
         },
         openReply() {
-            this.isReply = true;
+            this.$refs.child.$emit('openReplyChild');
         },
         close: function () {
             this.isDelete = false;
@@ -84,14 +83,17 @@ Vue.component('replyMessage', {
     `,
     props: {
         value: String,
-        isReply: Boolean,
         replyId: Number,
     },
     data: () => ({
         replyText: '',
         can: false,
+        isReply: false,
     }),
     methods: {
+        openReplyChild() {
+            this.isReply = true;
+        },
         childAddReply() {
             this.$emit("input", this.replyText);
             this.can = true;
